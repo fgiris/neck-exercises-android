@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#283593</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccentLight">#90caf9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000</color>
+    <color name="greyLight">#fafafa</color>
+    <color name="grey">#eeeeee</color>
+    <color name="greyDark">#bdbdbd</color>
+    <color name="greyDarkUp">#757575</color>
+    <color name="greyDarker">#373737</color>
+
+    <color name="colorAccentButton">#E91E63</color>
+    <color name="colorAccentButtonDarker">#D81B60</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black_alpha_40">#66000000</color>
+</resources>

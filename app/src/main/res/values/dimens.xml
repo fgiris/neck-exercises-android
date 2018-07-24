@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="program_card_padding">16dp</dimen>
+    <dimen name="program_header_size">18dp</dimen>
+    <dimen name="program_doctor_name_padding">1dp</dimen>
+    <dimen name="program_date_box_margin">16dp</dimen>
+    <dimen name="program_duration_margin">16dp</dimen>
+    <dimen name="program_date_margin">16dp</dimen>
+    <dimen name="program_complete_margin">16dp</dimen>
+    <dimen name="program_arranger_margin">4dp</dimen>
+    <dimen name="program_date_box_text_size">18sp</dimen>
+    <dimen name="exercise_header_padding">8dp</dimen>
+    <dimen name="exercise_layout_padding">8dp</dimen>
+    <dimen name="app_bar_text_size">8dp</dimen>
+    <dimen name="rcylerview_margin_bottom">50dp</dimen>
+    <dimen name="exercise_details_header_size">24dp</dimen>
+    <dimen name="exercise_details_info_size">24dp</dimen>
+    <dimen name="exercise_details_info_header_size">18dp</dimen>
+    <dimen name="exercise_details_info_birim_size">18dp</dimen>
+    <dimen name="exercise_details_header_margin">10dp</dimen>
+    <dimen name="exercise_details_scroll_view_margin">100dp</dimen>
+</resources>

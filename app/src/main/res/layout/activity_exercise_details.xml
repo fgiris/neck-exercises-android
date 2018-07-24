@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ceng.muhendis.muneckexercises.ExerciseDetailsActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/exDetailsImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        >
+        <ImageView
+            android:id="@+id/exDetailsImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            />
+        <ImageView
+            android:id="@+id/exDetailsTransperentLayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            />
+
+        <ImageView
+            android:id="@+id/exDetailsVideoPlayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_play_circle_outline_black_72dp"
+            />
+    </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/exDetailsImages">
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/exDetailsHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="@dimen/exercise_details_header_size"
+                android:gravity="center"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="EGZERSİZ BAŞLIĞI"
+                android:paddingVertical="@dimen/exercise_details_header_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exDetailsSetsStaticText"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="@string/exDetailsSetHeader"
+                        android:textColor="@color/greyDarker"
+                        android:textSize="@dimen/exercise_details_info_header_size" />
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exDetailsSet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:gravity="center"
+                        android:textSize="@dimen/exercise_details_info_size"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/roboto_condensed_bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exDetailsRepsStaticText"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+
+                        android:text="@string/exDetailsRepHeader"
+                        android:textColor="@color/greyDarker"
+                        android:textSize="@dimen/exercise_details_info_header_size" />
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exDetailsRep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:gravity="center"
+                        android:textSize="@dimen/exercise_details_info_size"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/roboto_condensed_bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    >
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exDetailsRestHeader"
+                        android:textSize="@dimen/exercise_details_info_header_size"
+                        android:gravity="center"
+                        android:textColor="@color/greyDarker"
+
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/roboto"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exDetailsRest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5 sn"
+                        android:gravity="center"
+                        android:textSize="@dimen/exercise_details_info_size"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/roboto_condensed_bold"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="10dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Chronometer
+                    android:id="@+id/timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:fontFamily="@font/oswald_bold"
+                    android:textSize="36dp"
+                    android:paddingVertical="10dp"
+                    />
+                <Button
+                    android:id="@+id/startStopButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circular_button"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="BAŞLA"
+                    android:textSize="24dp"
+                    android:fontFamily="@font/oswald"
+                    android:textColor="#fff"
+                    android:elevation="2dp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/exDetailsGrayLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/exDetailsExpStaticText"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/exDetailsExpHeader"
+                    android:textColor="@color/greyDarker"
+                    android:textSize="@dimen/exercise_details_info_header_size" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/exDetailsExpEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:inputType="textMultiLine"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/dummy_text"
+                    android:textColor="@color/greyDarkUp"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+        </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/exDetailsToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_toolbar_translucent"/>
+
+
+</RelativeLayout>

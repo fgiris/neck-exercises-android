@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ceng.muhendis.muneckexercises.RegisterActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarRegister"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_register"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:textSize="20dp"
+                android:textColor="@color/greyDarker"
+                android:id="@+id/title_register" />
+        </android.support.v7.widget.Toolbar>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:focusable="true"
+           android:focusableInTouchMode="true"
+           android:orientation="vertical"
+           android:paddingLeft="24dp"
+           android:paddingRight="24dp"
+           android:paddingTop="80dp">
+
+           <EditText
+               android:id="@+id/registerNameEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Ad Soyad"
+               android:inputType="text" />
+           <Spinner
+               android:id="@+id/registerGenderSpinner"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:prompt="@string/gender_prompt"
+               android:entries="@array/gender_array"
+
+               android:fontFamily="@font/open_sans_light"
+               />
+           <EditText
+               android:id="@+id/registerAgeEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Yaş"
+               android:inputType="number" />
+           <EditText
+               android:id="@+id/registerHeightEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Boy (cm)"
+               android:inputType="number" />
+           <EditText
+               android:id="@+id/registerWeightEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Kilo (kg)"
+               android:inputType="number" />
+
+           <EditText
+               android:id="@+id/registerEmailEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Eposta"
+               android:inputType="textEmailAddress" />
+
+           <EditText
+               android:id="@+id/registerPasswordEditText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="12dp"
+               android:layout_marginTop="12dp"
+               android:ems="10"
+               android:fontFamily="@font/open_sans_light"
+               android:hint="Parola"
+               android:inputType="textPassword"
+               android:shadowColor="@color/colorPrimary"
+               android:textColor="@color/colorPrimary" />
+
+           <Button
+               android:id="@+id/register_btn_finish"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="20dp"
+               android:layout_marginTop="44dp"
+               android:background="@drawable/roundedbutton"
+               android:fontFamily="@font/oswald"
+               android:onClick="finishRegister"
+               android:padding="8dp"
+               android:text="KAYIT"
+               android:textColor="@color/colorPrimaryDark"
+               android:textSize="20dp" />
+
+
+
+       </LinearLayout>
+   </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

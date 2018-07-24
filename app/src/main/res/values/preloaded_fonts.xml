@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/amatic_sc</item>
+        <item>@font/anton</item>
+        <item>@font/fjalla_one</item>
+        <item>@font/open_sans</item>
+        <item>@font/open_sans_bold</item>
+        <item>@font/open_sans_condensed_light</item>
+        <item>@font/open_sans_light</item>
+        <item>@font/oswald</item>
+        <item>@font/oswald_bold</item>
+        <item>@font/oswald_light</item>
+        <item>@font/roboto</item>
+        <item>@font/roboto_bold</item>
+        <item>@font/roboto_condensed_bold</item>
+    </array>
+</resources>

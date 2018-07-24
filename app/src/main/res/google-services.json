@@ -1,0 +1,104 @@
+{
+  "project_info": {
+    "project_number": "393439003490",
+    "firebase_url": "https://marmaraegzersiz-45442.firebaseio.com",
+    "project_id": "marmaraegzersiz-45442",
+    "storage_bucket": "marmaraegzersiz-45442.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393439003490:android:34cf1f39fc4d3a8b",
+        "android_client_info": {
+          "package_name": "com.ceng.muhendis.marmaraegzersiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393439003490-70bvf1ijrro78n2dqtjn92lfatfsd85e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBL1jBlOZkAEYngyQmYKovmLBAWQiNAvA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393439003490:android:d8f0d92bdd283849",
+        "android_client_info": {
+          "package_name": "com.ceng.muhendis.muneckexercises"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393439003490-70bvf1ijrro78n2dqtjn92lfatfsd85e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBL1jBlOZkAEYngyQmYKovmLBAWQiNAvA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393439003490:android:e4993934271401ac",
+        "android_client_info": {
+          "package_name": "com.example.muhendis.marmaraegzersiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393439003490-70bvf1ijrro78n2dqtjn92lfatfsd85e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBL1jBlOZkAEYngyQmYKovmLBAWQiNAvA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

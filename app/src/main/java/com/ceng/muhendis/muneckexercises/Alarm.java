@@ -1,0 +1,800 @@
+package com.ceng.muhendis.muneckexercises;
+
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.ceng.muhendis.muneckexercises.model.SettingsFirebaseDb;
+import com.ceng.muhendis.muneckexercises.model.UserFirebaseDb;
+import com.ceng.muhendis.muneckexercises.services.AlarmNotificationService;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.Calendar;
+import java.util.Map;
+
+/**
+ * Created by muhendis on 1.04.2018.
+ */
+
+public class Alarm extends BroadcastReceiver {
+    private final String TAG ="MYALARM";
+    public static boolean isFirst=true;
+    @Override
+    public void onReceive(Context context, Intent intent)
+    {
+        FirebaseApp.initializeApp(context);
+        if (intent.getAction()!= null && intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+            if(isEnglish(context)){
+                setAlarmsEnglish(context);
+            }
+            else{
+                setAlarms(context);
+            }
+        }
+
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+        if(timeOfDay >= 0 && timeOfDay < 8){
+        }
+        else{
+                NotificationCompat.Builder mBuilder;
+                String message = intent.getStringExtra(Keys.ALARM_MESSAGE);
+                Log.d(TAG,"MESSAGE: "+message);
+                Log.d(TAG,"NOTOFOCATION RECIEVED");
+
+                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                if(message!=null)
+                {
+                    mBuilder = new NotificationCompat.Builder(context)
+                            .setSmallIcon(R.drawable.marmara_logo)
+                            .setContentTitle("M.Ü. Neck Exercises")
+                            .setSound(alarmSound)
+                            .setVibrate(new long[] { 1000, 1000})
+                            .setContentText(message);
+                }
+                else
+                {
+                    mBuilder = new NotificationCompat.Builder(context)
+                            .setSmallIcon(R.drawable.marmara_logo)
+                            .setContentTitle("M.Ü. Neck Exercises")
+                            .setSound(alarmSound)
+                            .setVibrate(new long[] { 1000, 1000})
+                            .setContentText("Egzersiz vaktin geldi. Egzersiz yapmaya ne dersin?");
+
+                }
+
+
+
+                Intent resultIntent = new Intent(context, LoginActivity.class);
+                int _id = (int) System.currentTimeMillis();
+                // Because clicking the notification opens a new ("special") activity, there's
+                // no need to create an artificial back stack.
+                PendingIntent resultPendingIntent =
+                        PendingIntent.getActivity(
+                                context,
+                                _id,
+                                resultIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+
+                mBuilder.setContentIntent(resultPendingIntent);
+
+
+                // Gets an instance of the NotificationManager service//
+
+                NotificationManager mNotificationManager =
+
+                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                // When you issue multiple notifications about the same type of event,
+                // it’s best practice for your app to try to update an existing notification
+                // with this new information, rather than immediately creating a new notification.
+                // If you want to update this notification at a later date, you need to assign it an ID.
+                // You can then use this ID whenever you issue a subsequent notification.
+                // If the previous notification is still visible, the system will update this existing notification,
+                // rather than create a new one. In this example, the notification’s ID is 001//
+
+                mNotificationManager.notify(001, mBuilder.build());
+
+
+
+        }
+
+
+    }
+
+    public void setAlarms(Context context){
+
+        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Günaydın");
+
+        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 815, i,0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ////////////////
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Güne omurganın düzgünlüğünü sağlayarak başlamaya ne dersin?");
+
+        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1015, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Hadi omurganın dikliğini hisset, tek tek omurlarını hisset, başının üzerinde bir şey varmış gibi dik dur.");
+
+        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1215, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1415, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt. Kendini iyi hisset!");
+
+        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1615, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt ve vücudundaki gerginlikleri azalt!");
+
+        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1815, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 20);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+
+        setAlarm(context);
+
+    }
+    public void setAlarmsEnglish(Context context){
+
+
+        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Good morning");
+
+        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 815, i,0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ////////////////
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"What do you say to start the day by providing the  smoothness  of the spine?");
+
+        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1015, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Come on feel the stiffness of the spine,  feel the individual vertebrae, stand up as if something is on your head.");
+
+        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1215, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
+
+        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1415, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture. Feel good!");
+
+        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1615, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture and reduce the tension in your body!");
+
+        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1815, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
+
+        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 20);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+
+        setAlarmEnglish(context);
+
+    }
+
+    public void setAlarm(final Context context)
+    {
+
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("token").equalTo(FirebaseInstanceId.getInstance().getToken()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null)
+                {
+                    for (DataSnapshot issue :
+                            dataSnapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference().child("settings").orderByChild("pid").equalTo(issue.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot!=null)
+                                {
+                                    for (DataSnapshot issue :
+                                            dataSnapshot.getChildren()) {
+                                        SettingsFirebaseDb settings = issue.getValue(SettingsFirebaseDb.class);
+                                        for(Map.Entry<String, Boolean> entry : settings.getNotificationDay().entrySet()) {
+                                            String keyDay = entry.getKey().substring(2);
+                                            boolean valueDay = entry.getValue();
+
+                                            for(Map.Entry<String, Boolean> entryTime : settings.getNotificationTime().entrySet()){
+                                                String keyTime = entryTime.getKey().substring(2);
+                                                boolean valueTime = entryTime.getValue();
+                                                AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                                                final Intent i = new Intent(context, Alarm.class);
+
+                                                PendingIntent pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                //PendingIntent pi = PendingIntent.getBroadcast(context, 1, i, 0);
+
+
+                                                if(valueDay && valueTime)
+                                                {
+
+
+                                                    Log.d("ALARM_MANAGER","KeyDay: "+keyDay+"---KeyDayEntry:"+entryTime.getKey()+"----keyTime: "+keyTime);
+                                                    // Set the alarm to start at approximately 2:00 p.m.
+                                                    Calendar calendar = Calendar.getInstance();
+                                                    calendar.setTimeInMillis(System.currentTimeMillis());
+                                                    calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(keyDay)+1);
+                                                    calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(keyTime));
+                                                    calendar.set(Calendar.MINUTE, 00);
+                                                    calendar.set(Calendar.SECOND, 00);
+
+                                                    Log.d("ALARM_MANAGER","Calendar Time: "+calendar.getTime());
+
+
+                                                    // With setInexactRepeating(), you have to use one of the AlarmManager interval
+                                                    // constants--in this case, AlarmManager.INTERVAL_DAY.
+                                                    pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                    if(pi==null){
+                                                        Log.d("ALARM_MANAGER_LOG","SETTING ALARM: "+keyDay+keyTime);
+                                                        pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, 0);
+
+                                                        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                                                AlarmManager.INTERVAL_DAY*7, pi);
+                                                    }
+                                                    else{
+                                                        Log.d("ALARM_MANAGER_LOG","ALARM ALREADY EXISTS: "+keyDay+keyTime);
+
+                                                    }
+
+                                                }
+                                                else{
+                                                    if(pi!=null){
+                                                        Log.d("ALARM_MANAGER_LOG","CANCELING ALARM"+keyDay+keyTime);
+
+                                                        am.cancel(pi);
+                                                        pi.cancel();
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 10 , pi); // Millisec * Second * Minute
+    }
+
+    public void setAlarmEnglish(final Context context)
+    {
+
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("token").equalTo(FirebaseInstanceId.getInstance().getToken()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null)
+                {
+                    for (DataSnapshot issue :
+                            dataSnapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference().child("settings").orderByChild("pid").equalTo(issue.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot!=null)
+                                {
+                                    for (DataSnapshot issue :
+                                            dataSnapshot.getChildren()) {
+                                        SettingsFirebaseDb settings = issue.getValue(SettingsFirebaseDb.class);
+                                        for(Map.Entry<String, Boolean> entry : settings.getNotificationDay().entrySet()) {
+                                            String keyDay = entry.getKey().substring(2);
+                                            boolean valueDay = entry.getValue();
+
+                                            for(Map.Entry<String, Boolean> entryTime : settings.getNotificationTime().entrySet()){
+                                                String keyTime = entryTime.getKey().substring(2);
+                                                boolean valueTime = entryTime.getValue();
+                                                AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                                                final Intent i = new Intent(context, Alarm.class);
+                                                i.putExtra(Keys.ALARM_MESSAGE,"It's time to make exercise. How about to start exercises?");
+
+                                                PendingIntent pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                //PendingIntent pi = PendingIntent.getBroadcast(context, 1, i, 0);
+
+
+                                                if(valueDay && valueTime)
+                                                {
+
+
+                                                    Log.d("ALARM_MANAGER","KeyDay: "+keyDay+"---KeyDayEntry:"+entryTime.getKey()+"----keyTime: "+keyTime);
+                                                    // Set the alarm to start at approximately 2:00 p.m.
+                                                    Calendar calendar = Calendar.getInstance();
+                                                    calendar.setTimeInMillis(System.currentTimeMillis());
+                                                    calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(keyDay)+1);
+                                                    calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(keyTime));
+                                                    calendar.set(Calendar.MINUTE, 00);
+                                                    calendar.set(Calendar.SECOND, 00);
+
+                                                    Log.d("ALARM_MANAGER","Calendar Time: "+calendar.getTime());
+
+
+                                                    // With setInexactRepeating(), you have to use one of the AlarmManager interval
+                                                    // constants--in this case, AlarmManager.INTERVAL_DAY.
+                                                    pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                    if(pi==null){
+                                                        Log.d("ALARM_MANAGER LOG","SETTING: "+keyDay+keyTime);
+                                                        pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, 0);
+
+                                                        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                                                AlarmManager.INTERVAL_DAY*7, pi);
+                                                    }
+
+                                                }
+                                                else{
+                                                    if(pi!=null){
+                                                        am.cancel(pi);
+                                                        pi.cancel();
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 10 , pi); // Millisec * Second * Minute
+    }
+
+    public void updateAlarmTurkish(final Context context)
+    {
+
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("token").equalTo(FirebaseInstanceId.getInstance().getToken()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null)
+                {
+                    for (DataSnapshot issue :
+                            dataSnapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference().child("settings").orderByChild("pid").equalTo(issue.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot!=null)
+                                {
+                                    for (DataSnapshot issue :
+                                            dataSnapshot.getChildren()) {
+                                        SettingsFirebaseDb settings = issue.getValue(SettingsFirebaseDb.class);
+                                        for(Map.Entry<String, Boolean> entry : settings.getNotificationDay().entrySet()) {
+                                            String keyDay = entry.getKey().substring(2);
+                                            boolean valueDay = entry.getValue();
+
+                                            for(Map.Entry<String, Boolean> entryTime : settings.getNotificationTime().entrySet()){
+                                                String keyTime = entryTime.getKey().substring(2);
+                                                boolean valueTime = entryTime.getValue();
+                                                AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                                                final Intent i = new Intent(context, Alarm.class);
+
+                                                PendingIntent pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                //PendingIntent pi = PendingIntent.getBroadcast(context, 1, i, 0);
+
+
+                                                if(valueDay && valueTime)
+                                                {
+
+
+                                                    Log.d("ALARM_MANAGER","KeyDay: "+keyDay+"---KeyDayEntry:"+entryTime.getKey()+"----keyTime: "+keyTime);
+                                                    // Set the alarm to start at approximately 2:00 p.m.
+                                                    Calendar calendar = Calendar.getInstance();
+                                                    calendar.setTimeInMillis(System.currentTimeMillis());
+                                                    calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(keyDay)+1);
+                                                    calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(keyTime));
+                                                    calendar.set(Calendar.MINUTE, 00);
+                                                    calendar.set(Calendar.SECOND, 00);
+
+                                                    Log.d("ALARM_MANAGER","Calendar Time: "+calendar.getTime());
+
+
+                                                    // With setInexactRepeating(), you have to use one of the AlarmManager interval
+                                                    // constants--in this case, AlarmManager.INTERVAL_DAY.
+                                                    pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_UPDATE_CURRENT);
+                                                    am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                                            AlarmManager.INTERVAL_DAY*7, pi);
+
+                                                }
+                                                else{
+                                                    if(pi!=null){
+                                                        am.cancel(pi);
+                                                        pi.cancel();
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 10 , pi); // Millisec * Second * Minute
+    }
+
+    public void updateAlarmEnglish(final Context context)
+    {
+
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("token").equalTo(FirebaseInstanceId.getInstance().getToken()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null)
+                {
+                    for (DataSnapshot issue :
+                            dataSnapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference().child("settings").orderByChild("pid").equalTo(issue.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot!=null)
+                                {
+                                    for (DataSnapshot issue :
+                                            dataSnapshot.getChildren()) {
+                                        SettingsFirebaseDb settings = issue.getValue(SettingsFirebaseDb.class);
+                                        for(Map.Entry<String, Boolean> entry : settings.getNotificationDay().entrySet()) {
+                                            String keyDay = entry.getKey().substring(2);
+                                            boolean valueDay = entry.getValue();
+
+                                            for(Map.Entry<String, Boolean> entryTime : settings.getNotificationTime().entrySet()){
+                                                String keyTime = entryTime.getKey().substring(2);
+                                                boolean valueTime = entryTime.getValue();
+                                                AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                                                final Intent i = new Intent(context, Alarm.class);
+                                                i.putExtra(Keys.ALARM_MESSAGE,"It's time to make exercise. How about to start exercises?");
+
+
+                                                PendingIntent pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_NO_CREATE);
+                                                //PendingIntent pi = PendingIntent.getBroadcast(context, 1, i, 0);
+
+
+                                                if(valueDay && valueTime)
+                                                {
+
+
+                                                    Log.d("ALARM_MANAGER","KeyDay: "+keyDay+"---KeyDayEntry:"+entryTime.getKey()+"----keyTime: "+keyTime);
+                                                    // Set the alarm to start at approximately 2:00 p.m.
+                                                    Calendar calendar = Calendar.getInstance();
+                                                    calendar.setTimeInMillis(System.currentTimeMillis());
+                                                    calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(keyDay)+1);
+                                                    calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(keyTime));
+                                                    calendar.set(Calendar.MINUTE, 00);
+                                                    calendar.set(Calendar.SECOND, 00);
+
+                                                    Log.d("ALARM_MANAGER","Calendar Time: "+calendar.getTime());
+
+
+                                                    // With setInexactRepeating(), you have to use one of the AlarmManager interval
+                                                    // constants--in this case, AlarmManager.INTERVAL_DAY.
+
+                                                    pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, PendingIntent.FLAG_UPDATE_CURRENT);
+                                                    am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                                            AlarmManager.INTERVAL_DAY*7, pi);
+
+                                                }
+                                                else{
+                                                    if(pi!=null){
+                                                        am.cancel(pi);
+                                                        pi.cancel();
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 10 , pi); // Millisec * Second * Minute
+    }
+
+    public boolean isEnglish(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.saved_user_file_key),Context.MODE_PRIVATE);
+        boolean isEnglish = sharedPref.getBoolean(context.getString(R.string.saved_user_isLanguageEnglish_key), false);
+        return isEnglish;
+    }
+
+    public void cancelAlarm(final Context context)
+    {
+
+
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("token").equalTo(FirebaseInstanceId.getInstance().getToken()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null)
+                {
+                    for (DataSnapshot issue :
+                            dataSnapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference().child("settings").orderByChild("pid").equalTo(issue.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot!=null)
+                                {
+                                    for (DataSnapshot issue :
+                                            dataSnapshot.getChildren()) {
+                                        SettingsFirebaseDb settings = issue.getValue(SettingsFirebaseDb.class);
+                                        for(Map.Entry<String, Boolean> entry : settings.getNotificationDay().entrySet()) {
+                                            String keyDay = entry.getKey().substring(2);
+                                            boolean valueDay = entry.getValue();
+                                            if(valueDay)
+                                            {
+                                                for(Map.Entry<String, Boolean> entryTime : settings.getNotificationTime().entrySet()){
+                                                    String keyTime = entryTime.getKey().substring(2);
+                                                    boolean valueTime = entryTime.getValue();
+                                                    if(valueTime)
+                                                    {
+                                                        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                                                        final Intent i = new Intent(context, Alarm.class);
+                                                        PendingIntent pi = PendingIntent.getBroadcast(context, Integer.parseInt(keyDay+keyTime), i, 0);
+                                                        //PendingIntent pi = PendingIntent.getBroadcast(context, 1, i, 0);
+
+
+                                                        // With setInexactRepeating(), you have to use one of the AlarmManager interval
+                                                        // constants--in this case, AlarmManager.INTERVAL_DAY.
+                                                        am.cancel(pi);
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+}

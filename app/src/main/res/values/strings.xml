@@ -1,0 +1,121 @@
+<resources>
+    <string name="app_name">M.Ü. Neck Exercises</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="dialog_no_internet">İnternet bağlantınızı kontrol edip tekrar deneyiniz.</string>
+    <string name="dialog_ok">TAMAM</string>
+    <string name="title_activity_main">PROGRAMLARIM</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="saved_user_isloggedin_key">SavedUserIsLoggedIn</string>
+    <string name="logging_out_key">LoggingOutUser</string>
+    <string name="saved_user_uid_key">SavedUserUid</string>
+    <string name="saved_user_email_key">SavedUserEmail</string>
+    <string name="saved_user_file_key">SavedUserFile</string>
+    <string name="saved_user_name_key">SavedUserName</string>
+    <string name="saved_user_isfirstsurveycompleted_key">SavedUserIsFirstSurveyCompleted</string>
+    <string name="saved_user_islastsurveycompleted_key">SavedUserIsLastSurveyCompleted</string>
+    <string name="saved_user_programstartdate_key">SavedUserProgramStartDate</string>
+    <string name="saved_user_isLanguageEnglish_key">SavedUserIsLanguageEnglish</string>
+    <string name="saved_user_isLanguageChangingForNotification_key">SavedUserIsLanguageChangingForNotification</string>
+
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="program_start_date_text">Başlangıç:</string>
+    <string name="program_finish_date_text">Bitiş:</string>
+    <string name="program_duration_text">Ortalama:</string>
+    <string name="program_go_button">BAŞLA</string>
+    <string name="program_arranger_text">Düzenleyen:</string>
+    <string name="title_activity_exercises">EGZERSİZLERİM</string>
+    <string name="title_activity_settings">AYARLARIM</string>
+    <string name="exercise_completed_button">EGZERSİZ SEÇ</string>
+    <string name="exercise_tab1_header">TAMAMLANMAMIŞ</string>
+    <string name="exercise_tab2_header">TAMAMLANMIŞ</string>
+
+    <string name="title_activity_exercise_detail">ExerciseDetailActivity</string>
+    <string name="title_activity_register">Kayıt Ol</string>
+    <string name="title_activity_terms">Kullanım Talimatı</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_exercise_details">ExerciseDetailsActivity</string>
+    <string name="exDetailsSetHeader">Set</string>
+    <string name="title_activity_statistics">İSTATİSLİKLERİM</string>
+
+    <string name="exDetailsRepHeader">Tekrar</string>
+    <string name="exDetailsRestHeader">Dinlenme</string>
+    <string name="exDetailsDailyRepHeader">Günlük</string>
+    <string name="exDetailsWeeklyRepHeader">Haftalık</string>
+    <string name="exDetailsExpHeader">Açıklama</string>
+    <string name="dummy_text">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="termsOfUseContent">Bu uygulama Marmara Üniversitesi Sağlık Bilimleri Enstitüsü yüksek lisans tez çalışması kapsamında oluşturulmuştur. Uzun süreli akıllı telefon kullanımı gelecek adına, kas-iskelet sistemi problemleri açısından endişe vericidir. Bu bağlamda günde 3 saat ve daha fazla süre akıllı telefon kullanan kişilerin akıllı telefon kullanım pozisyonları ve yapılan araştırmalar baz alınarak bu uygulama oluşturulmuştur.\n\n
+    Uygulama içeriği 3 alt başlıktan; 1)Değerlendirme, 2)Uyarı ve 3) Egzersiz Eğitim Programından oluşmaktadır.\n\n
+    Kişilerin günde en az 10-15 dk, haftada 3 gün yapmaları tavsiye edilmektedir.\n\nKullanım talimatını okudum ve kabul ediyorum.
+    </string>
+
+    <string name="continueTerms">Kabul Ediyorum</string>
+    <string name="gender_prompt">Cinsiyet Seçiniz</string>
+    <string-array name="gender_array">
+        <item>Cinsiyeti Seçiniz</item>
+        <item>Erkek</item>
+        <item>Kadın</item>
+    </string-array>
+    <string-array name="gender_array_eng">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string name="registerSuccessfull">Hesabınız başarı ile oluşturuldu</string>
+    <string name="title_activity_first_survey">Anket</string>
+    <string name="title_agri_survey">AĞRI DEĞERLENDİRMESİ</string>
+    <string name="title_mobile_survey">MOBİL UYGULAMA DEĞERLENDİRMESİ</string>
+    <string name="exp_mobile_survey">Mobil uygulamamızdan ne kadar memnun kaldığınızı lütfen belirtiniz.</string>
+    <string name="exp_agri_survey">Uzun süre akıllı telefon kullanımı sonrası boyun-omuz kuşağındaki ağrı şiddetinizi aşağıdaki ölçek üzerinde işaretleyiniz.</string>
+    <string name="title_kas_survey">KAS-İSKELET SİSTEMİ PROBLEMLERİ</string>
+    <string name="exp_kas_survey1">Son 12 ay süresince herhangi bir zamanda aşağıdaki bölgelerde herhangi bir sorununuz (acı, ağrı, rahatsızlık) oldu mu?</string>
+    <string name="exp_kas_survey2">Son 12 ay süresince herhangi bir zamanda ağrınızdan dolayı olağan işinizi (evde ya da ev dışında) yapmanızı engelledi mi?</string>
+    <string name="exp_kas_survey3">Son 1 hafta süresince herhangi bir zamanda ağrınız oldu mu?</string>
+    <string name="exp_settings_main">Gün içerisinde egzersiz yapmak için bildirim almak istediğiniz uygun zaman diliminizi seçiniz.</string>
+    <string name="exp_settings1">Bildirim almak istediğiniz saat dilimi (en az 3 farklı saat dilimi seçmelisiniz)</string>
+    <string name="exp_settings2">Bildirim almak istediğiniz günler (en az 3 gün seçmelisiniz)</string>
+    <string name="time_interval_8">08.00-09.00</string>
+    <string name="time_interval_9">09.00-10.00</string>
+    <string name="time_interval_10">10.00-11.00</string>
+    <string name="time_interval_11">11.00-12.00</string>
+    <string name="time_interval_12">12.00-13.00</string>
+    <string name="time_interval_13">13.00-14.00</string>
+    <string name="time_interval_14">14.00-15.00</string>
+    <string name="time_interval_15">15.00-16.00</string>
+    <string name="time_interval_16">16.00-17.00</string>
+    <string name="time_interval_17">17.00-18.00</string>
+    <string name="time_interval_18">18.00-19.00</string>
+    <string name="time_interval_19">19.00-20.00</string>
+    <string name="time_interval_20">20.00-21.00</string>
+    <string name="time_interval_21">21.00-22.00</string>
+    <string name="time_interval_22">22.00-23.00</string>
+    <string name="time_interval_23">23.00-00.00</string>
+    <string name="settings_day_1">Pazartesi</string>
+    <string name="settings_day_2">Salı</string>
+    <string name="settings_day_3">Çarşamba</string>
+    <string name="settings_day_4">Perşembe</string>
+    <string name="settings_day_5">Cuma</string>
+    <string name="settings_day_6">Cumartesi</string>
+    <string name="settings_day_7">Pazar</string>
+    <string name="title_activity_bottom_nav">BottomNavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
