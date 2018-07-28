@@ -216,12 +216,13 @@ public class FirstSurveyActivity extends AppCompatActivity {
 
                     if(!isBeforeTreatment){
                         editor.putBoolean(getString(R.string.saved_user_islastsurveycompleted_key), true);
+                        mFirebaseDBHelper.insertMobileSurvey(mMobileSlider.getProgress());
 
                     }
 
                     editor.apply();
 
-                    mFirebaseDBHelper.insertMobileSurvey(mMobileSlider.getProgress());
+
                     mFirebaseDBHelper.insertMuscleSurvey(1,isBeforeTreatment,radiogroupList1);
                     mFirebaseDBHelper.insertMuscleSurvey(2,isBeforeTreatment,radiogroupList2);
                     mFirebaseDBHelper.insertMuscleSurvey(3,isBeforeTreatment,radiogroupList3);

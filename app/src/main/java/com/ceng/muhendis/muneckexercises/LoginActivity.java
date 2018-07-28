@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         checkAndUpdateVersion();
-        
+
         if(checkIsLoggedIn())
         {
             Log.d(TAG,"LOGGED IN");
