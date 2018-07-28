@@ -1,16 +1,22 @@
 package com.ceng.muhendis.muneckexercises;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -50,16 +56,68 @@ public class Alarm extends BroadcastReceiver {
         Calendar c = Calendar.getInstance();
         int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.marmara_logo);
+
         if(timeOfDay >= 0 && timeOfDay < 8){
         }
         else{
+            String message = intent.getStringExtra(Keys.ALARM_MESSAGE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                String notificationBody = message;
+                if(message==null)
+                     notificationBody = "Egzersiz vaktin geldi. Egzersiz yapmaya ne dersin?";
+
+                CharSequence name = "my_channel_01";
+                String description = "my_channel_01_desc";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("8888", name, importance);
+                channel.setDescription(description);
+                //channel.enableLights(true);
+                //Sets the notification light color for notifications posted to this channel, if the device supports this feature.
+                //channel.setLightColor(Color.BLUE);
+
+                //channel.setShowBadge(true);
+                channel.setVibrationPattern(new long[]{1000,1000});
+                channel.enableVibration(true);
+                // Register the channel with the system; you can't change the importance
+                // or other notification behaviors after this
+                NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+
+
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "8888")
+                        .setLargeIcon(icon)
+                        .setBadgeIconType(R.drawable.marmara_logo)
+                        .setSmallIcon(R.drawable.marmara_logo)
+                        .setContentTitle("M.Ü. Neck Exercises")
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setContentText(notificationBody);
+
+
+                Intent resultIntent = new Intent(context, ExercisesActivity.class);
+                int _id = (int) System.currentTimeMillis();
+
+                PendingIntent resultPendingIntent =
+                        PendingIntent.getActivity(
+                                context,
+                                _id,
+                                resultIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+
+                mBuilder.setContentIntent(resultPendingIntent);
+
+                NotificationManagerCompat mNotificationManager =
+
+                        NotificationManagerCompat.from(context);
+
+                mNotificationManager.notify(001, mBuilder.build());
+            }
+            else{
                 NotificationCompat.Builder mBuilder;
-                String message = intent.getStringExtra(Keys.ALARM_MESSAGE);
-                Log.d(TAG,"MESSAGE: "+message);
-                Log.d(TAG,"NOTOFOCATION RECIEVED");
-
-                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
                 if(message!=null)
                 {
                     mBuilder = new NotificationCompat.Builder(context)
@@ -80,12 +138,8 @@ public class Alarm extends BroadcastReceiver {
 
                 }
 
-
-
                 Intent resultIntent = new Intent(context, LoginActivity.class);
                 int _id = (int) System.currentTimeMillis();
-                // Because clicking the notification opens a new ("special") activity, there's
-                // no need to create an artificial back stack.
                 PendingIntent resultPendingIntent =
                         PendingIntent.getActivity(
                                 context,
@@ -96,24 +150,13 @@ public class Alarm extends BroadcastReceiver {
 
                 mBuilder.setContentIntent(resultPendingIntent);
 
-
-                // Gets an instance of the NotificationManager service//
-
                 NotificationManager mNotificationManager =
 
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-                // When you issue multiple notifications about the same type of event,
-                // it’s best practice for your app to try to update an existing notification
-                // with this new information, rather than immediately creating a new notification.
-                // If you want to update this notification at a later date, you need to assign it an ID.
-                // You can then use this ID whenever you issue a subsequent notification.
-                // If the previous notification is still visible, the system will update this existing notification,
-                // rather than create a new one. In this example, the notification’s ID is 001//
 
                 mNotificationManager.notify(001, mBuilder.build());
-
-
+            }
 
         }
 
