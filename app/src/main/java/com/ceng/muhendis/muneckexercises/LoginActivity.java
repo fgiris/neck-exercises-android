@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -73,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        checkAndUpdateVersion();
+        
         if(checkIsLoggedIn())
         {
             Log.d(TAG,"LOGGED IN");
@@ -302,6 +307,23 @@ public class LoginActivity extends AppCompatActivity {
 
         // show it
         alertDialog.show();
+    }
+
+    public void checkAndUpdateVersion(){
+        SharedPreferences prefs = this.getSharedPreferences(getResources().getString(R.string.saved_user_file_key),Context.MODE_PRIVATE);
+        PackageInfo pInfo;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
+            if ( prefs.getLong( getResources().getString(R.string.saved_user_versionNumberKey), 0) < pInfo.versionCode ) {
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean(getResources().getString(R.string.saved_user_isloggedin_key), false);
+                editor.putLong(getResources().getString(R.string.saved_user_versionNumberKey), pInfo.versionCode);
+                editor.commit();
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showAlertConnectionProblem()

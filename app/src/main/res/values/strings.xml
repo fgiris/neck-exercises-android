@@ -21,6 +21,7 @@
     <string name="saved_user_programstartdate_key">SavedUserProgramStartDate</string>
     <string name="saved_user_isLanguageEnglish_key">SavedUserIsLanguageEnglish</string>
     <string name="saved_user_isLanguageChangingForNotification_key">SavedUserIsLanguageChangingForNotification</string>
+    <string name="saved_user_versionNumberKey">SavedUserVersionNumberKey</string>
 
     <!--
         This is the name that users will see when interacting with this channel.
