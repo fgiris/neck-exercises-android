@@ -102,6 +102,8 @@ public class FirebaseDBHelper {
     public void insertUser(final UserFirebaseDb user)
     {
         final DatabaseReference userReference = myRef.child("users");
+        userReference.keepSynced(true);
+
         Query userQuery = userReference.orderByChild("email").equalTo(user.getEmail());
         userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
