@@ -23,6 +23,7 @@ public class TermsofUseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         if(FunctionsHelper.IsLanguageEnglish(getApplicationContext())){
             ((TextView)findViewById(R.id.title_terms)).setText("Terms of Use");
+            ((TextView)findViewById(R.id.termsOfUseContent)).setText(getResources().getString(R.string.termsOfUseContentEng));
             ((Button)findViewById(R.id.btn_terms_continue)).setText("Continue");
         }
     }
