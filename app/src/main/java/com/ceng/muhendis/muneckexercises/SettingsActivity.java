@@ -128,15 +128,20 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if(FunctionsHelper.IsLanguageEnglish(getApplicationContext())){
             englishLanguageSwitch.setChecked(true);
         }
-        englishLanguageSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                changeLanguage(isChecked);
+        englishLanguageSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isChecked = ((Switch)v).isChecked();
 
                 String title = "Dil Değişikliği";
                 String message = "Dil ayarlarının uygulanması için uygulama baştan başlatılacaktır";
+                String btnText = "Tamam";
+                String btnCancelText = "Vazgeç";
                 if(!isChecked){
                     title = "Change Language";
                     message = "The app will be restarted in order to apply changes";
+                    btnText = "Ok";
+                    btnCancelText = "Cancel";
                 }
 
 
@@ -147,8 +152,16 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 alertDialogBuilder
                         .setMessage(message)
                         .setCancelable(false)
-                        .setPositiveButton("TAMAM",new DialogInterface.OnClickListener() {
+                        .setNegativeButton(btnCancelText, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ((Switch)v).setChecked(!isChecked);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton(btnText,new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
+                                changeLanguage(isChecked);
                                 Intent i = getBaseContext().getPackageManager()
                                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -163,9 +176,9 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
                 // show it
                 alertDialog.show();
-
             }
         });
+
         mLinearLayout = findViewById(R.id.settingsLinearLayout);
         timesCheckBoxList = new ArrayList<>();
         daysCheckBoxList = new ArrayList<>();
