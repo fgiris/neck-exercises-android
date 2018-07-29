@@ -393,7 +393,7 @@ public class ExercisesActivity extends AppCompatActivity implements NavigationVi
             return true;
 
         } else if (id == R.id.nav_exit) {
-            mFirebaseDBHelper.logout_user(this);
+            FunctionsHelper.showAlertAndLogout(this,mFirebaseDBHelper);
             return true;
             /*if(!mFirebaseDBHelper.isOnline())
             {

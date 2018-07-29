@@ -278,7 +278,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_exit) {
-            mFirebaseDbHelper.logout_user(this);
+            FunctionsHelper.showAlertAndLogout(this,mFirebaseDbHelper);
+
             return true;
             /*if(!mFirebaseDBHelper.isOnline())
             {
