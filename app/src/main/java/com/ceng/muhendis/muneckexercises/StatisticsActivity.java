@@ -55,7 +55,7 @@ public class StatisticsActivity extends AppCompatActivity implements NavigationV
 
     //GraphView graph,graph2;
     final String TAG="StatisticsActivity";
-    LineChart chart;
+    BarChart chart;
     BarChart barChart;
     FirebaseDBHelper mFirebaseDBHelper;
     long startTime,elapsedTime=0;
@@ -107,7 +107,7 @@ public class StatisticsActivity extends AppCompatActivity implements NavigationV
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
         }
         barChart = (BarChart) findViewById(R.id.barChart);
-        chart = (LineChart) findViewById(R.id.chart);
+        chart = (BarChart) findViewById(R.id.chart);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout4);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -118,267 +118,13 @@ public class StatisticsActivity extends AppCompatActivity implements NavigationV
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view4);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setUpGraph1();
-        //setUpGraph2();
         mFirebaseDBHelper.setupGraph1(this);
         mFirebaseDBHelper.setupGraph2(this);
-        /*
-        Calendar calendar = Calendar.getInstance();
-        Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d2 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d3 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d4 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d5 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d6 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d7 = calendar.getTime();
-
-        graph = (GraphView) findViewById(R.id.graph);
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                new DataPoint(d1, 1),
-                new DataPoint(d2, 5),
-                new DataPoint(d3, 3),
-                new DataPoint(d4, 2),
-                new DataPoint(d5, 6),
-                new DataPoint(d6, 8),
-                new DataPoint(d7, 10)
-        });
-
-        series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
-            @Override
-            public int get(DataPoint data) {
-                return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
-            }
-        });
-
-        series.setSpacing(20);
-
-// draw values on top
-        series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.BLACK);
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Günlük Egzersiz Sayısı");
-        graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(20);
-        graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.LEFT);
-        graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
-        graph.addSeries(series);
-        //graph.getLegendRenderer().setVisible(true);
-        //graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext()));
-        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
-        graph.getGridLabelRenderer().setNumHorizontalLabels(7); // only 4 because of the space
-        graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
-        graph.getViewport().setScalableY(true);
-// set manual x bounds to have nice steps
-        //graph.getViewport().setMinX(d1.getTime());
-        //graph.getViewport().setMaxX(d3.getTime());
-        //graph.getViewport().setXAxisBoundsManual(true);
-
-// as we use dates as labels, the human rounding to nice readable numbers
-// is not necessary
-        graph.getGridLabelRenderer().setHumanRounding(false);
-        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"Pazartesi", "Salı", "Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"});
-        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
-        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-        graph2 = (GraphView) findViewById(R.id.graph2);
-        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(1, 10),
-                new DataPoint(2, 15),
-                new DataPoint(3, 13),
-                new DataPoint(4, 12),
-                new DataPoint(5, 26),
-                new DataPoint(6, 26),
-                new DataPoint(7, 26)
-        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            series2.setColor(getColor(R.color.colorAccentButton));
-        }
-        else{
-            series2.setColor(Color.BLUE);
-        }
-        series2.setDrawDataPoints(true);
-        series2.setDataPointsRadius(10);
-        series2.setThickness(8);
-        graph2.addSeries(series2);
-        graph2.getGridLabelRenderer().setVerticalAxisTitle("Günlük Egzersiz Süresi");
-        graph2.getGridLabelRenderer().setVerticalAxisTitleTextSize(20);
-
-         staticLabelsFormatter = new StaticLabelsFormatter(graph2);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"Pazartesi", "Salı", "Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"});
-        graph2.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);*/
-
 
 
     }
 
-    public void setUpGraph1()
-    {
-        barChart = (BarChart) findViewById(R.id.barChart);
 
-
-        int[] numArr = {1};
-        Calendar calendar = Calendar.getInstance();
-
-        Date d1 = calendar.getTime();
-
-        final HashMap<Integer, String>numMap = new HashMap<>();
-        numMap.put(1, new SimpleDateFormat("dd-MM-yyyy").format(d1));
-
-        List<BarEntry> entries1 = new ArrayList<BarEntry>();
-
-        for(int num : numArr){
-            entries1.add(new BarEntry(num, 30));
-        }
-
-
-        BarDataSet dataSet = new BarDataSet(entries1, "Toplam Egzersiz Süresi (dk)");
-        dataSet.setColor(ResourcesCompat.getColor(getResources(), R.color.colorAccentButton, null) );
-        BarData data = new BarData(dataSet);
-        data.setValueFormatter(new IValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                return (int)value+"dk";
-            }
-        });
-        data.setBarWidth(0.1f);
-
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setLabelRotationAngle(45);
-        xAxis.setValueFormatter(new DefaultAxisValueFormatter(0) {
-            @Override public String getFormattedValue(float value, AxisBase axis) {
-
-                Log.d(TAG,"X VALUE: "+value+"--LAbel count:"+axis.getLabelCount());
-                return numMap.get((int)(value));
-            }
-            @Override
-            public int getDecimalDigits() {
-                return 0;
-            }
-        });
-        xAxis.setGranularity(1f);
-
-        barChart.setData(data);
-        barChart.setNoDataText("Egzersiz verisi bulunamadı");
-        Description desc = new Description();
-        desc.setYOffset(-10);
-        desc.setText("Günlük Yapılan Toplam Egzersiz Süresi");
-        barChart.setDescription(desc);
-        barChart.animateY(1000);
-        barChart.invalidate();
-        /*List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 30f));
-        entries.add(new BarEntry(1f, 80f));
-        entries.add(new BarEntry(2f, 60f));
-        entries.add(new BarEntry(3f, 50f));
-        // gap of 2f
-        entries.add(new BarEntry(5f, 70f));
-        entries.add(new BarEntry(6f, 60f));
-
-        BarDataSet set = new BarDataSet(entries, "Günlük Egzersiz Süresi");
-
-        BarData data = new BarData(set);
-        data.setBarWidth(0.9f); // set custom bar width
-        chart.setData(data);
-        chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh
-        */
-    }
-
-    public void setUpGraph2()
-    {
-        chart = (LineChart) findViewById(R.id.chart);
-
-
-        int[] numArr = {1,2,3,4,5,6,7};
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, -6);
-        Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d2 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d3 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d4 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d5 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d6 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d7 = calendar.getTime();
-
-        final HashMap<Integer, String>numMap = new HashMap<>();
-        numMap.put(1, new SimpleDateFormat("dd-MM-yyyy").format(d1));
-        numMap.put(2, new SimpleDateFormat("dd-MM-yyyy").format(d2));
-        numMap.put(3, new SimpleDateFormat("dd-MM-yyyy").format(d3));
-        numMap.put(4, new SimpleDateFormat("dd-MM-yyyy").format(d4));
-        numMap.put(5, new SimpleDateFormat("dd-MM-yyyy").format(d5));
-        numMap.put(6, new SimpleDateFormat("dd-MM-yyyy").format(d6));
-        numMap.put(7, new SimpleDateFormat("dd-MM-yyyy").format(d7));
-
-        List<Entry> entries1 = new ArrayList<Entry>();
-
-        for(int num : numArr){
-            entries1.add(new Entry(num, num*num));
-        }
-
-        LineDataSet dataSet = new LineDataSet(entries1, "Günlük Toplam Egzersiz Süresi (dk)");
-        dataSet.setColor(ResourcesCompat.getColor(getResources(), R.color.colorAccentButton, null) );
-        dataSet.setCircleColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null));
-        LineData data = new LineData(dataSet);
-        data.setValueFormatter(new IValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                return (int)value+"dk";
-            }
-        });
-
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setLabelRotationAngle(45);
-        xAxis.setValueFormatter(new DefaultAxisValueFormatter(0) {
-            @Override public String getFormattedValue(float value, AxisBase axis) {
-
-                Log.d(TAG,"X VALUE: "+value+"--LAbel count:"+axis.getLabelCount());
-                return numMap.get((int)(value));
-            }
-            @Override
-            public int getDecimalDigits() {
-                return 0;
-            }
-        });
-        xAxis.setGranularity(1f);
-        chart.setData(data);
-        chart.setNoDataText("Egzersiz verisi bulunamadı");
-        Description desc = new Description();
-        desc.setYOffset(-10);
-        desc.setText("Haftalık Yapılan Toplam Egzersiz Süreleri");
-        chart.setDescription(desc);
-        chart.animateY(1000, Easing.EasingOption.Linear);
-        chart.invalidate();
-        /*List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 30f));
-        entries.add(new BarEntry(1f, 80f));
-        entries.add(new BarEntry(2f, 60f));
-        entries.add(new BarEntry(3f, 50f));
-        // gap of 2f
-        entries.add(new BarEntry(5f, 70f));
-        entries.add(new BarEntry(6f, 60f));
-
-        BarDataSet set = new BarDataSet(entries, "Günlük Egzersiz Süresi");
-
-        BarData data = new BarData(set);
-        data.setBarWidth(0.9f); // set custom bar width
-        chart.setData(data);
-        chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh
-        */
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

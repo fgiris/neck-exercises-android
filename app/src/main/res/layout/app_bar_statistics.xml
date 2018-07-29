@@ -59,7 +59,7 @@
         android:layout_height="match_parent"
         android:paddingVertical="120dp"
         android:paddingHorizontal="20dp">
-        <com.github.mikephil.charting.charts.LineChart
+        <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/chart"
             android:visibility="gone"
             android:layout_width="match_parent"

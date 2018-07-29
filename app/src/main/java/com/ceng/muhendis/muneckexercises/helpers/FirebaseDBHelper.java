@@ -1069,7 +1069,7 @@ public class FirebaseDBHelper {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if(dataSnapshot!=null){
-                                    LineChart chart = activity.findViewById(R.id.chart);
+                                    BarChart chart = activity.findViewById(R.id.chart);
 
 
                                     int[] numArr = {1,2,3,4,5,6,7};
@@ -1139,7 +1139,7 @@ public class FirebaseDBHelper {
 
                                     }
 
-                                    List<Entry> entries1 = new ArrayList<Entry>();
+                                    List<BarEntry> entries1 = new ArrayList<BarEntry>();
 
                                     final HashMap<Integer, String>numMap = new HashMap<>();
                                     numMap.put(1, new SimpleDateFormat("dd-MM-yyyy").format(d1));
@@ -1151,7 +1151,7 @@ public class FirebaseDBHelper {
                                     numMap.put(7, new SimpleDateFormat("dd-MM-yyyy").format(d7));
 
                                     for(int num : numArr){
-                                        entries1.add(new Entry(num, times[num-1]/60));
+                                        entries1.add(new BarEntry(num, times[num-1]/60));
                                         Log.d(TAG,"Array Element "+(num-1)+": "+times[num-1]);
                                     }
 
@@ -1163,10 +1163,10 @@ public class FirebaseDBHelper {
                                         description = "Finished Exercise Time in Last Week";
                                     }
 
-                                    LineDataSet dataSet = new LineDataSet(entries1, label);
+                                    BarDataSet dataSet = new BarDataSet(entries1, label);
                                     dataSet.setColor(ResourcesCompat.getColor(activity.getResources(), R.color.colorAccentButton, null) );
-                                    dataSet.setCircleColor(ResourcesCompat.getColor(activity.getResources(), R.color.colorPrimary, null));
-                                    LineData data = new LineData(dataSet);
+                                    //dataSet.setCircleColor(ResourcesCompat.getColor(activity.getResources(), R.color.colorPrimary, null));
+                                    BarData data = new BarData(dataSet);
                                     data.setValueFormatter(new IValueFormatter() {
                                         @Override
                                         public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
