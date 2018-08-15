@@ -16,6 +16,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -1241,16 +1242,41 @@ public class FirebaseDBHelper {
                         videoFileNames.add(String.valueOf(exercise.getEid())+".mp4");
                     }
 
-                    ProgressBack videoProgress = new ProgressBack();
-                    videoProgress.activity = activity;
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
 
-                    String[] videoLinksArray = new String[videoLinks.size()];
-                    videoLinks.toArray(videoLinksArray);
+                    String title="Veriler İndirilecek";
+                    String message = "Program verileri indirilecektir. Lütfen internete bağlı olduğunuzdan emin olunuz.";
+                    String buttonText = "TAMAM";
+                    if(FunctionsHelper.IsLanguageEnglish(activity.getApplicationContext())){
+                        title="Media Download";
+                        message = "Media files will be downloaded. Please ensure that you have internet connection.";
+                        buttonText = "OK";
+                    }
+                    // Inflate and set the layout for the dialog
+                    // Pass null as the parent view because its going in the dialog layout
+                    mBuilder.setCancelable(true)
+                            .setTitle(title)
+                            .setMessage(message)
+                            .setPositiveButton(buttonText,new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface mDialog,int id) {
+                                    mDialog.dismiss();
+                                    ProgressBack videoProgress = new ProgressBack();
+                                    videoProgress.activity = activity;
 
-                    String[] videoFileNamesArray = new String[videoFileNames.size()];
-                    videoFileNames.toArray(videoFileNamesArray);
+                                    String[] videoLinksArray = new String[videoLinks.size()];
+                                    videoLinks.toArray(videoLinksArray);
 
-                    videoProgress.execute(videoLinksArray,videoFileNamesArray);
+                                    String[] videoFileNamesArray = new String[videoFileNames.size()];
+                                    videoFileNames.toArray(videoFileNamesArray);
+
+                                    videoProgress.execute(videoLinksArray,videoFileNamesArray);
+                                }
+                            });
+                    final AlertDialog mAlertDialog = mBuilder.create();
+                    mAlertDialog.show();
+
+
+
 
                 }
                 else{

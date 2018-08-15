@@ -149,202 +149,7 @@ public class NotificationService extends Service {
 
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Günaydın");
-
-        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ////////////////
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Güne omurganın düzgünlüğünü sağlayarak başlamaya ne dersin?");
-
-        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Hadi omurganın dikliğini hisset, tek tek omurlarını hisset, başının üzerinde bir şey varmış gibi dik dur.");
-
-        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
-
-        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt. Kendini iyi hisset!");
-
-        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt ve vücudundaki gerginlikleri azalt!");
-
-        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
-
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-
-        alarm.updateAlarmTurkish(getApplicationContext());
-
-    }
-    public void updateAlarmsEnglish(){
-        Context context = getApplicationContext();
-        alarm = new Alarm();
-        alarm.setAlarm(context);
-
-        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Good morning");
-
-        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ////////////////
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"What do you say to start the day by providing the  smoothness  of the spine?");
-
-        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Come on feel the stiffness of the spine,  feel the individual vertebrae, stand up as if something is on your head.");
-
-        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture! ");
-
-        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture. Feel good!");
-
-        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture and reduce the tension in your body!");
-
-        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
-
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 15);
-
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
-
-
-
-        alarm.updateAlarmEnglish(getApplicationContext());
-
-
-    }
-    public void setAlarms(){
-        Context context = getApplicationContext();
-        alarm = new Alarm();
-        alarm.setAlarm(context);
-
-        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Günaydın");
+        i.putExtra(Keys.ALARM_MESSAGE,"Günaydın\uD83D\uDE0A güne hareket katarak başlamaya ne dersin?");
 
         PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
         Calendar calendar = Calendar.getInstance();
@@ -363,12 +168,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Güne omurganın düzgünlüğünü sağlayarak başlamaya ne dersin?");
 
-        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 15);
+        pi = PendingIntent.getBroadcast(context, 945, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 45);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1015, i, 0);
+            pi = PendingIntent.getBroadcast(context, 945, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -379,12 +184,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Hadi omurganın dikliğini hisset, tek tek omurlarını hisset, başının üzerinde bir şey varmış gibi dik dur.");
 
-        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        pi = PendingIntent.getBroadcast(context, 1115, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
         calendar.set(Calendar.MINUTE, 15);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1215, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1115, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -394,6 +199,21 @@ public class NotificationService extends Service {
 
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 1245, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1245, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt. Kendini iyi hisset!");
 
         pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
         calendar.set(Calendar.HOUR_OF_DAY, 14);
@@ -408,14 +228,267 @@ public class NotificationService extends Service {
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt. Kendini iyi hisset!");
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt ve vücudundaki gerginlikleri azalt!");
 
-        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        pi = PendingIntent.getBroadcast(context, 1545, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1545, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Başın önde mi duruyor, dikkat et duruşunu düzeltelim. ");
+
+        pi = PendingIntent.getBroadcast(context, 1715, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
         calendar.set(Calendar.MINUTE, 15);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1615, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1715, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1845, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+
+        alarm.updateAlarmTurkish(getApplicationContext());
+
+    }
+    public void updateAlarmsEnglish(){
+        Context context = getApplicationContext();
+        alarm = new Alarm();
+        alarm.setAlarm(context);
+
+        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Good Morning\uD83D\uDE0A How about starting the day by adding movement?");
+
+        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 815, i,0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ////////////////
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"What do you say to start the day by providing the  smoothness  of the spine?");
+
+        pi = PendingIntent.getBroadcast(context, 945, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 945, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Come on feel the stiffness of the spine,  feel the individual vertebrae, stand up as if something is on your head.");
+
+        pi = PendingIntent.getBroadcast(context, 1115, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1115, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
+
+        pi = PendingIntent.getBroadcast(context, 1245, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1245, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture. Feel good!");
+
+        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1415, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture and reduce the tension in your body!");
+
+        pi = PendingIntent.getBroadcast(context, 1545, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1545, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Is standing in front of the head, let's fix the attention posture.");
+
+        pi = PendingIntent.getBroadcast(context, 1715, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1715, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
+
+        pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1845, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+
+        alarm.updateAlarmEnglish(getApplicationContext());
+
+
+    }
+    public void setAlarms(){
+        Context context = getApplicationContext();
+        alarm = new Alarm();
+        alarm.setAlarm(context);
+
+        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Günaydın\uD83D\uDE0A güne hareket katarak başlamaya ne dersin?");
+
+        PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 815, i,0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ////////////////
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Güne omurganın düzgünlüğünü sağlayarak başlamaya ne dersin?");
+
+        pi = PendingIntent.getBroadcast(context, 945, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 945, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Hadi omurganın dikliğini hisset, tek tek omurlarını hisset, başının üzerinde bir şey varmış gibi dik dur.");
+
+        pi = PendingIntent.getBroadcast(context, 1115, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1115, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 1245, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1245, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt. Kendini iyi hisset!");
+
+        pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 15);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1415, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -425,12 +498,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu düzelt ve vücudundaki gerginlikleri azalt!");
 
-        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 15);
+        pi = PendingIntent.getBroadcast(context, 1545, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 45);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1815, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1545, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -438,14 +511,30 @@ public class NotificationService extends Service {
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+        i.putExtra(Keys.ALARM_MESSAGE,"Başın önde mi duruyor, dikkat et duruşunu düzeltelim. ");
 
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
+        pi = PendingIntent.getBroadcast(context, 1715, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
         calendar.set(Calendar.MINUTE, 15);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1715, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
+
+        pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1845, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -462,7 +551,7 @@ public class NotificationService extends Service {
 
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Good morning");
+        i.putExtra(Keys.ALARM_MESSAGE,"Good Morning\uD83D\uDE0A How about starting the day by adding movement?");
 
         PendingIntent pi = PendingIntent.getBroadcast(context, 815, i, PendingIntent.FLAG_NO_CREATE);
         Calendar calendar = Calendar.getInstance();
@@ -481,12 +570,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"What do you say to start the day by providing the  smoothness  of the spine?");
 
-        pi = PendingIntent.getBroadcast(context, 1015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 15);
+        pi = PendingIntent.getBroadcast(context, 945, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 45);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1015, i, 0);
+            pi = PendingIntent.getBroadcast(context, 945, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -497,12 +586,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Come on feel the stiffness of the spine,  feel the individual vertebrae, stand up as if something is on your head.");
 
-        pi = PendingIntent.getBroadcast(context, 1215, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        pi = PendingIntent.getBroadcast(context, 1115, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
         calendar.set(Calendar.MINUTE, 15);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1215, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1115, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -512,6 +601,21 @@ public class NotificationService extends Service {
 
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
+
+        pi = PendingIntent.getBroadcast(context, 1245, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 45);
+
+        if(pi==null){
+            pi = PendingIntent.getBroadcast(context, 1245, i, 0);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pi);
+        }
+
+        ///////////////
+
+        i = new Intent(context, Alarm.class);
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture. Feel good!");
 
         pi = PendingIntent.getBroadcast(context, 1415, i, PendingIntent.FLAG_NO_CREATE);
         calendar.set(Calendar.HOUR_OF_DAY, 14);
@@ -526,14 +630,14 @@ public class NotificationService extends Service {
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture. Feel good!");
+        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture and reduce the tension in your body!");
 
-        pi = PendingIntent.getBroadcast(context, 1615, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 15);
+        pi = PendingIntent.getBroadcast(context, 1545, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 45);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1615, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1545, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -541,14 +645,14 @@ public class NotificationService extends Service {
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Fix the posture and reduce the tension in your body!");
+        i.putExtra(Keys.ALARM_MESSAGE,"Is standing in front of the head, let's fix the attention posture.");
 
-        pi = PendingIntent.getBroadcast(context, 1815, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        pi = PendingIntent.getBroadcast(context, 1715, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
         calendar.set(Calendar.MINUTE, 15);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 1815, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1715, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -558,12 +662,12 @@ public class NotificationService extends Service {
         i = new Intent(context, Alarm.class);
         i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
 
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 15);
+        pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 45);
 
         if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
+            pi = PendingIntent.getBroadcast(context, 1845, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }

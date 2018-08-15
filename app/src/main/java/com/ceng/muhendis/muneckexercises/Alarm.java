@@ -273,10 +273,11 @@ public class Alarm extends BroadcastReceiver {
                     AlarmManager.INTERVAL_DAY, pi);
         }
 
+
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Uzun süredir telefona mı bakıyorsun? Bir ara vermeye ne dersin?");
+        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
 
         pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
         calendar.set(Calendar.HOUR_OF_DAY, 18);
@@ -284,36 +285,6 @@ public class Alarm extends BroadcastReceiver {
 
         if(pi==null){
             pi = PendingIntent.getBroadcast(context, 1845, i, 0);
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pi);
-        }
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Uzun süredir başın önde mi duruyor, egzersiz yapmaya ne dersin?");
-
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 15);
-
-        if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pi);
-        }
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Duruşunu korumalısın! ");
-
-        pi = PendingIntent.getBroadcast(context, 2145, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 45);
-
-        if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2145, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }
@@ -437,7 +408,7 @@ public class Alarm extends BroadcastReceiver {
         ///////////////
 
         i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Are you looking at the phone for a long time?");
+        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
 
         pi = PendingIntent.getBroadcast(context, 1845, i, PendingIntent.FLAG_NO_CREATE);
         calendar.set(Calendar.HOUR_OF_DAY, 18);
@@ -445,36 +416,6 @@ public class Alarm extends BroadcastReceiver {
 
         if(pi==null){
             pi = PendingIntent.getBroadcast(context, 1845, i, 0);
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pi);
-        }
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Is it long in front of the head, how about exercising?");
-
-        pi = PendingIntent.getBroadcast(context, 2015, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 15);
-
-        if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2015, i, 0);
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pi);
-        }
-
-        ///////////////
-
-        i = new Intent(context, Alarm.class);
-        i.putExtra(Keys.ALARM_MESSAGE,"Protect your posture!");
-
-        pi = PendingIntent.getBroadcast(context, 2145, i, PendingIntent.FLAG_NO_CREATE);
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 45);
-
-        if(pi==null){
-            pi = PendingIntent.getBroadcast(context, 2145, i, 0);
             am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pi);
         }

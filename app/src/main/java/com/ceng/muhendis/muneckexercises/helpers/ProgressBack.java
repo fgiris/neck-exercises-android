@@ -57,48 +57,22 @@ public class ProgressBack extends AsyncTask<String[],String[],String> {
     @Override
     protected void onPreExecute() {
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
-
-        String title="Veriler İndiriecek";
-        String message = "Program verileri indirilecektir. Lütfen internete bağlı olduğunuzdan emin olunuz.";
-        String buttonText = "TAMAM";
+        builder = new AlertDialog.Builder(activity);
+        // Get the layout inflater
+        LayoutInflater inflater = activity.getLayoutInflater();
+        String title="Veriler İndiriliyor";
+        View custom_dialog = inflater.inflate(R.layout.custom_dialog_downloading, null);
         if(FunctionsHelper.IsLanguageEnglish(activity.getApplicationContext())){
-            title="Media Download";
-            message = "Media files will be downloaded. Please ensure that you have internet connection.";
-            buttonText = "OK";
-            }
+            title="Downloading Media Files";
+            custom_dialog = inflater.inflate(R.layout.custom_dialog_downloading_eng, null);
+        }
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        mBuilder.setCancelable(true)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(buttonText,new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface mDialog,int id) {
-                        mDialog.dismiss();
-                        //PD= ProgressDialog.show(MainActivity.this,"Veriler İndiriliyor", "Lütfen Bekleyiniz. Program verileri indiriliyor. Videoların indirilmesi zaman alabilir.", true);
-                        //PD.setCancelable(false);
-                        builder = new AlertDialog.Builder(activity);
-                        // Get the layout inflater
-                        LayoutInflater inflater = activity.getLayoutInflater();
-                        String title="Veriler İndiriliyor";
-                        View custom_dialog = inflater.inflate(R.layout.custom_dialog_downloading, null);
-                        if(FunctionsHelper.IsLanguageEnglish(activity.getApplicationContext())){
-                            title="Downloading Media Files";
-                            custom_dialog = inflater.inflate(R.layout.custom_dialog_downloading_eng, null);
-                        }
-                        // Inflate and set the layout for the dialog
-                        // Pass null as the parent view because its going in the dialog layout
-                        builder.setView(custom_dialog)
-                                .setCancelable(false)
-                                .setTitle(title);
-                        dialog = builder.create();
-                        dialog.show();
-                    }
-                });
-        final AlertDialog mAlertDialog = mBuilder.create();
-        mAlertDialog.show();
-
-
+        builder.setView(custom_dialog)
+                .setCancelable(false)
+                .setTitle(title);
+        dialog = builder.create();
+        dialog.show();
 
     }
 
